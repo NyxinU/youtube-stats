@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
-  get 'videos/index'
-
-  get 'videos/show'
-
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :sessions, only: [:create, :destroy]
-  resource :home, only: [:show]
-  resources :videos, only: [:index, :show]
+  get '/video/:id', to: 'videos#show', as: 'video'
+  # get '/home', to: 'home#show', as: 'home'
 
-  root to: "home#show"
+  root to: 'home#show'
 end
