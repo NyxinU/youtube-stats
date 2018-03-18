@@ -10,16 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306234247) do
+ActiveRecord::Schema.define(version: 20180309023311) do
 
-  create_table "users", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.string "name"
-    t.string "oauth_token"
-    t.datetime "oauth_expires_at"
+  create_table "messages", id: false, force: :cascade do |t|
+    t.string "uid", null: false
+    t.string "author", null: false
+    t.string "live_chat_id", null: false
+    t.string "display_message", null: false
+    t.datetime "published_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author"], name: "index_messages_on_author"
+    t.index ["live_chat_id"], name: "index_messages_on_live_chat_id"
+    t.index ["uid"], name: "index_messages_on_uid"
   end
+
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'profile_image_url' for column 'display_name'
 
 end

@@ -14,4 +14,5 @@
  *= require_self
  */
 
- @import "./videos.scss"
+ @import "./videos.scss";
+ @import "./messages.scss";
